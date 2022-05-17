@@ -40,6 +40,7 @@
 % Knowledge graphs as tools for explainable machine learning: A survey: https://www.sciencedirect.com/science/article/pii/S0004370221001788
 % Explainable Reinforcement Learning: A Survey: https://arxiv.org/pdf/2005.06247.pdf
 % Playing a Strategy Game with Knowledge-Based Reinforcement Learning: https://arxiv.org/pdf/1908.05472.pdf
+% Explainable Reinforcement Learning Through a Causal Lens: https://arxiv.org/pdf/1905.10958.pdf
 % ENVIRONMENTS: https://agents.inf.ed.ac.uk/blog/multiagent-learning-environments/
 % Keywords: knowledge graph completion (KGC),
 \section{Introduction}
@@ -49,19 +50,64 @@
 % ----------------------------------------
 
 % <something about why XAI is important>
+% ----------------------------------------
+% Why is explainability so crucial? First, there is one obvious psychology-related reason: 
+% ‘if the users do not trust a model or a prediction, they will not use it’ 
 
-% <something about why Knowledge base explanation systems (KBX-systems)>
-% <something about how KBX-systems haven't really  but not in reinforcement learning>
+In recent years the field of AI has seen an increasing need for explainability. As our computational power increased
+and 
+As models grew larger and more complex, a performance-transparancy trade-off was introduced \cite{}. 
+This trade-off descr
+% ----------------------------------------
+% AI models exhibit one detrimential characteristic: a performance-transpa- rency trade-off. 
+% This describes the fact that the more complex a model’s inner workings, the less clear it 
+% is how its predictions or decisions were achieved.
+
+% ----------------------------------------
+% especially considering Machine Learning (ML) methods like Reinforcement Learning (RL) where 
+% the system learns autonomously, the necessity to understand the underlying reasoning for 
+% their decisions becomes apparent.
+% &
+% explaining and justifying the decisions is now more crucial than ever, especially in the 
+% domain of RL where an agent learns by itself, without human interaction.
+
+% Explainable Machine Learning has rapidly become an active area of research, with an explosion 
+% of contributions focusing on using a variety of techniques (e.g. visual cues, anchors, saliency 
+% maps or counterfactuals [2–4]) to elicit the decisions of both scrutable and inscrutable 
+% (black box) methods [5,6]
+
+% ----------------------------------------
 % <something about that knowledge graphs have been used to explain large language models>
+
+% Explainable AI systems require completeness and accuracy. This means that an important 
+% challenge for the field of Knowledge Representation at scale to increase the information 
+% coverage and represent more knowledge explicitly across-domains. Additionally, correctness 
+% and freshness of the information in large knowledge graph are necessary, requiring not only 
+% the investigation of efficient approaches for knowledge graph evolution at scale [100], but 
+% also solutions to maintain high-quality cross-domain knowledge graphs without requiring 
+% expensive human labour, which can also lead to resources to be discontinued. 
+
+% ----------------------------------------
+% <something about why Knowledge base explanation systems (KBX-systems)>
+
+% KBX-systems have been used in the domains of Image recognition, recommender systems, 
+% natural language applications and regressive models
+
+% KBX-systems are more understandable as they provide explanations in the form of symbolic, 
+% human-readable rules, but need to trade between the structure and succinctness of the 
+% generated explanations, which prevents generalisation across tasks;
+
+
+
+% ----------------------------------------
 % <something about different XAI methods that have been used within reinforcement learning>
 
-% - Original problem I'd like to fix: Updating knowledge graphs of dynamic environments based on an agent's observations
-% - Research Question: How can you update an agent's knowledge of a dynamic environment based on its observations?
-% - Context of the work: 
-%   - Important for interactions between systems that share info through observations. 
-%   - May improve explainability of deep reinforcment learning models
-%   - May improve quality of deep reinforcement learning models
-% - Relevance of the paper (external motivation)
+% ----------------------------------------
+% <something about how KBX-systems haven't really be used in reinforcement learning>
+% A somewhat KBX-system that has been used for reinforcement learning is the causal model proposed by Prashan Madumal et al.
+% According to the authors however, one weakness of their approach is that the causal model must be given beforehand. Future work 
+% includes using epistemic knowledge of the explainee to provide explanations that are more targeted, and extending the model to 
+% continuous domains.
 
 \section{Problem Statement}
 % ----------------------------------------
@@ -76,6 +122,10 @@
 % An important aspect of this component is that it should make clear what the paper contributes to the 
 % topic: what is new, what does the research add to the existing knowledge. 
 % ----------------------------------------
+% <Motivation of the relevance of the paper>
+
+% ----------------------------------------
+% <Relationship with the state of the art>
 
 % <Problem: Currently deep reinforcement learning models are difficult to explain. Knowledge Graphs are an option for better XAI.
 % They, however, have not fully been researched for reinforcement learning models>
