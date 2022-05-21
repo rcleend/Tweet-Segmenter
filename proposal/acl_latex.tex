@@ -7,6 +7,8 @@
 % Remove the "review" option to generate the final version.
 \usepackage{acl}
 
+\usepackage{graphicx}
+
 % Standard package includes
 \usepackage{times}
 \usepackage{latexsym}
@@ -22,25 +24,13 @@
 % and will typically save some space.
 \usepackage{microtype}
 
-\title{Proposal: Knowledge Graphs for Explainable Reinforcement Learning}
+\title{Proposal: Knowledge-Graphs for Feature Importance Explainability in Deep Reinforcement Learning Models}
 
 \author{Roel Leenders \\
   University of Twente, Enschede, The Netherlands \\
   \texttt{r.leenders@student.utwente.nl}} 
 \begin{document}
 \maketitle
-% --------------------------------------------
-% Rel4KC: A Reinforcement Learning Agent for Knowledge Graph Completion and Validation: http://www.cse.msu.edu/~zhaoxi35/DRL4KDD/1.pdf
-% Mining Implicit Entity Preference from User-Item Interaction Data for Knowledge Graph Completion via Adversarial Learning: https://arxiv.org/abs/2003.12718
-% Learning to Update Knowledge Graphs by Reading News: https://aclanthology.org/D19-1265.pdf
-% Building Dynamic Knowledge Graphs from Text-based Games: https://grlearning.github.io/papers/80.pdf
-% Knowledge Infused Learning (K-IL): Towards Deep Incorporation of Knowledge in Deep Learning: https://arxiv.org/abs/1912.00512
-% Towards mental time travel: a hierarchical memory for reinforcement learning agents: https://arxiv.org/abs/2105.14039#:~:text=Reinforcement%20learning%20agents%20often%20forget,is%20followed%20by%20distractor%20tasks.
-
-% Knowledge graphs as tools for explainable machine learning: A survey: https://www.sciencedirect.com/science/article/pii/S0004370221001788
-% Explainable Reinforcement Learning: A Survey: https://arxiv.org/pdf/2005.06247.pdf
-% Playing a Strategy Game with Knowledge-Based Reinforcement Learning: https://arxiv.org/pdf/1908.05472.pdf
-% Explainable Reinforcement Learning Through a Causal Lens: https://arxiv.org/pdf/1905.10958.pdf
 % ENVIRONMENTS: https://agents.inf.ed.ac.uk/blog/multiagent-learning-environments/
 % Keywords: knowledge graph completion (KGC),
 \section{Introduction}
@@ -51,63 +41,17 @@
 
 % <something about why XAI is important>
 % ----------------------------------------
-% Why is explainability so crucial? First, there is one obvious psychology-related reason: 
-% ‘if the users do not trust a model or a prediction, they will not use it’ 
 
-In recent years the field of AI has seen an increasing need for explainability. As our computational power increased
-and 
-As models grew larger and more complex, a performance-transparancy trade-off was introduced \cite{}. 
-This trade-off descr
-% ----------------------------------------
-% AI models exhibit one detrimential characteristic: a performance-transpa- rency trade-off. 
-% This describes the fact that the more complex a model’s inner workings, the less clear it 
-% is how its predictions or decisions were achieved.
+In recent years the field of Artificial Intelligence (AI) has seen an increasing need for explainability. As models became more 
+complex and computationally intensive, a performance-transparency trade-off was introduced \cite{Puiutta2020}. High-performing 
+models with complex inner workings come at the cost of transparency; it becomes less clear how they achieve their decisions and 
+predictions. 
 
-% ----------------------------------------
-% especially considering Machine Learning (ML) methods like Reinforcement Learning (RL) where 
-% the system learns autonomously, the necessity to understand the underlying reasoning for 
-% their decisions becomes apparent.
-% &
-% explaining and justifying the decisions is now more crucial than ever, especially in the 
-% domain of RL where an agent learns by itself, without human interaction.
+The necessity for explainable AI (XAI) increases particularly for machine learning methods like Reinforcement Learning (RL)
+where an agent learns autonomously with little to no human intervention. Additionally, since people are by and large concerned
+about the risks of automated decision-making \cite{Araujo2020}, explainability is also important to improve the public opinion and trust of AI.
 
-% Explainable Machine Learning has rapidly become an active area of research, with an explosion 
-% of contributions focusing on using a variety of techniques (e.g. visual cues, anchors, saliency 
-% maps or counterfactuals [2–4]) to elicit the decisions of both scrutable and inscrutable 
-% (black box) methods [5,6]
-
-% ----------------------------------------
-% <something about that knowledge graphs have been used to explain large language models>
-
-% Explainable AI systems require completeness and accuracy. This means that an important 
-% challenge for the field of Knowledge Representation at scale to increase the information 
-% coverage and represent more knowledge explicitly across-domains. Additionally, correctness 
-% and freshness of the information in large knowledge graph are necessary, requiring not only 
-% the investigation of efficient approaches for knowledge graph evolution at scale [100], but 
-% also solutions to maintain high-quality cross-domain knowledge graphs without requiring 
-% expensive human labour, which can also lead to resources to be discontinued. 
-
-% ----------------------------------------
-% <something about why Knowledge base explanation systems (KBX-systems)>
-
-% KBX-systems have been used in the domains of Image recognition, recommender systems, 
-% natural language applications and regressive models
-
-% KBX-systems are more understandable as they provide explanations in the form of symbolic, 
-% human-readable rules, but need to trade between the structure and succinctness of the 
-% generated explanations, which prevents generalisation across tasks;
-
-
-
-% ----------------------------------------
-% <something about different XAI methods that have been used within reinforcement learning>
-
-% ----------------------------------------
-% <something about how KBX-systems haven't really be used in reinforcement learning>
-% A somewhat KBX-system that has been used for reinforcement learning is the causal model proposed by Prashan Madumal et al.
-% According to the authors however, one weakness of their approach is that the causal model must be given beforehand. Future work 
-% includes using epistemic knowledge of the explainee to provide explanations that are more targeted, and extending the model to 
-% continuous domains.
+% something about knowledge graphs and how they can be used to train and explain AI
 
 \section{Problem Statement}
 % ----------------------------------------
@@ -123,16 +67,25 @@ This trade-off descr
 % topic: what is new, what does the research add to the existing knowledge. 
 % ----------------------------------------
 % <Motivation of the relevance of the paper>
-
-% ----------------------------------------
-% <Relationship with the state of the art>
+Fortunately, XAI has seen a rapid growth in active research \cite{TIDDI2022103627} with a plethora of contributions proposing a 
+variety of different techniques \cite{Xu2015, Ribeiro_Singh_Guestrin_2018, ijcai2019-876}. Although still understudied, RL has seen emerging
+XAI trends \cite{Wells2021} which include visualization, query-based explanations and policy summarization. 
+An XAI method that makes models inherently more transparent is the use of a knowledge-driven (symbolic) methods \cite{tiddi_knowledge_2022}. Oltramari et al. (\citeyear{Oltramari2020}) propose a method in which
+knowledge-driven methods (e.g. knowledge-graphs) can be used in hybrid fashion with deep neural networks. The authors show that this neuro-symbolic approach is able to maintain interpretability while achieving comparable
+performance. However, since knowledge-driven methods for XAI are more common within the supervised learning literature \cite{tiddi_knowledge_2022}, knowledge-driven XAI used for RL is still very much understudied.
+Therefore, the proposed research focuses on the use of domain specific knowledge graphs to both train and explain the behavior of a RL agent. This results in the following research question and sub-questions:
 
 % <Problem: Currently deep reinforcement learning models are difficult to explain. Knowledge Graphs are an option for better XAI.
 % They, however, have not fully been researched for reinforcement learning models>
-% <Research Question 1: To what extent, if any, can a knowledge-graph improve the explainability of a deep RL model?>
-% <Sub Question 1: How to construct a knowledge graph of a deep RL model?>
+% <Research Question 1: To what extent, if any, can a domain specific knowledge-graph improve the explainability of a deep RL model?>
+% <Sub Question 1: How can a deep RL model use a domain specific knowledge graph?>
 
-\cite{Arnold2013EI}
+\begin{itemize}
+  \item \textbf{RQ. 1}: To what extent, if any, can a domain specific knowledge-graph improve the feature importance explainability of a deep RL model?
+  \item \textbf{SQ. 1}: How
+  \item \textbf{SQ. 2}: How 
+\end{itemize}
+
 
 
 \section{Proposed Method of Research}
@@ -145,6 +98,24 @@ This trade-off descr
 % experiment, how you think the experiment will answer your questions, etc. 
 % ----------------------------------------
 
+\begin{figure}[ht]
+  \includegraphics[width=\linewidth]{images/rl_taxonomy.png}
+  \caption{RL taxonomy proposed by Milani et al. (\citeyear{Milani2022}) which distinguishes between \textit{feature importance}, \textit{learning process and MDP}, and \textit{policy-level} XAI methods.}
+  \label{fig:rl_taxonomy}
+\end{figure}
+To narrow the scope of the proposed research, the focus will mainly be on the \textit{feature importance} explainability of a RL model \cite{Milani2022}.
+Milani et al. propose a taxonomy for organizing the XAI literature that focuses on RL. This taxonomy distinguishes between three different aspects of explainable RL (see figure \ref{fig:rl_taxonomy}).
+In particular, \textit{feature importance} aims to explain the features that affect an agent's decision-making for a given input state.
+Most \textit{feature importance} techniques mentioned in the taxonomy use XAI methods extended from supervised learning literature \cite{greydanus_visualizing_2018,goel_unsupervised_2018,ehsan_rationalization_2017}. 
+Since there is supporting literature for knowledge-driven XAI in supervised learning, the proposed research will aim to use knowledge-graphs for \textit{feature importance} explainability in deep RL models.
+
+
+
+% First further research into how knowledge graphs can be used for XAI
+% First further research into how knowledge graphs can be used to extract features to train the RL agent
+% Create a simple prototype that uses a knowledge graph to train and explain the behaviour of an RL agent
+% Evaluate the prototype
+
 \section{Planning}
 % ----------------------------------------
 % Mile-stones in terms of concrete content/tasks/products to be delivered should be given. Elements of 
@@ -154,15 +125,14 @@ This trade-off descr
 % analysis. Say when you expect to have the answers to your questions.  
 % NB Tasks such as “week 45: research” are NOT concrete enough. 
 % ----------------------------------------
-\subsection{References}
 
-\bibliography{anthology,custom}
+\bibliography{anthology,custom, zotero}
 
-\appendix
+% \appendix
 
-\section{Example Appendix}
-\label{sec:appendix}
+% \section{Example Appendix}
+% \label{sec:appendix}
 
-This is an appendix.
+% This is an appendix.
 
 \end{document}
