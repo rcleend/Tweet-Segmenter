@@ -82,11 +82,6 @@ class SEDTWikSegmenter:
                 else:
                     j -= 1
 
-        """
-        dict = {}
-        for segment in segments
-            dict[segment] = {
-        """
 
         segmentation = [s for s in segmentation if len(s) > 2]
         return segmentation

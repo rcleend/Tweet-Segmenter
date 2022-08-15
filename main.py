@@ -1,7 +1,8 @@
-from utils.twitter_api.main import TwitterAPI
+from twitter_api.main import TwitterAPI
 from utils.cleaner import TweetCleaner
 from utils.segmenter import SEDTWikSegmenter
 from utils.clusterer import Clusterer
+
 """
 TODO: Prototype 1
 
@@ -24,11 +25,13 @@ tweet_segmenter = SEDTWikSegmenter(wiki_titles_file='data/enwiki-titles-unstemme
 tweets = twitter_api.get_tweets()
 cleaned_tweets = tweet_cleaner.clean_tweets(tweets)
 
-for tweet in cleaned_tweets['data']:
-    print(tweet_segmenter.tweet_segmentation(tweet))
-
-# TODO: cluster segmentations
 clusterer = Clusterer()
+
+for tweet in cleaned_tweets['data']:
+    clusterer.add_segments(tweet_segmenter.tweet_segmentation(tweet))
+
+clusterer.create_clusters()
+clusterer.save_clusters_to_json()
 
 
 
