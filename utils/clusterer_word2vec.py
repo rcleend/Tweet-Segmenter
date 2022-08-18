@@ -11,17 +11,23 @@ class ClustererWord2Vec:
         # load into word2vec
 
         print('Loading keyed vectors')
-        self.__keyed_vectors = KeyedVectors.load_word2vec_format('data/enwiki_20180420_10d.txt')
-        print('Finished loading keyed vectors')
+        self.__keyed_vectors = KeyedVectors.load_word2vec_format('../data/enwiki_keyed_vectors.txt')
+        # print('Finished loading keyed vectors')
+        #
+        # print('Loading all titles')
+        # wiki_titles = []
+        # f = open('../data/enwiki_titles.txt', 'r')
+        # for title in f:
+        #     wiki_titles.append(title)
+        #
+        # print(wiki_titles)
+        #
+        # print('Finished loading all titles')
 
-        # load segments into model
-        # apply PCA
-        # apply clustering
-
-    def fit_model(self, segments, n_components=2):
-        vectors = self.__keyed_vectors[segments]
+    def fit_model(self, n_components=2):
+        vectors = self.__keyed_vectors[self.__wiki_titles]
         pca = PCA(n_components=n_components)
-        words = pd.DataFrame(segments)
+        words = pd.DataFrame(self.__wiki_titles)
         pca_result = pd.DataFrame(pca.fit_transform(vectors))
         pca_result['x_values'] = pca_result.iloc[0:, 0]
         pca_result['y_values'] = pca_result.iloc[0:, 1]
@@ -47,5 +53,10 @@ class ClustererWord2Vec:
 
         print("Estimated number of clusters: %d" % n_clusters_)
         print("Estimated number of noise points: %d" % n_noise_)
+
+if __name__ == '__main__':
+    clusterer = ClustererWord2Vec()
+    # clusterer.fit_model()
+
 
 

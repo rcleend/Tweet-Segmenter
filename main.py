@@ -29,7 +29,7 @@ TODO: Prototype 1
 # # with open("response.json", "w") as write_file:
 # #     json.dump(tweets, write_file, indent=4)
 #
-# cleaned_tweets = tweet_cleaner.clean_tweets(tweets)
+# cleaned_tweets = tweet_cleaner.clean_tweets(tweets, remove_retweets=True)
 #
 # with open("cleaned_tweets.json", "w") as write_file:
 #     json.dump(cleaned_tweets, write_file, indent=4)

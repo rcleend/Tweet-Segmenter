@@ -76,12 +76,11 @@ class SEDTWikSegmenter:
                     i = j
                     break
                 elif j == i + 1:  # one word
-                    # segmentation.append(tokens[i])
+                    segmentation.append(tokens[i])
                     i += 1
                     break
                 else:
                     j -= 1
-
 
         segmentation = [s for s in segmentation if len(s) > 2]
         return segmentation
