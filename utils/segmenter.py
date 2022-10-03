@@ -94,18 +94,6 @@ class SEDTWikSegmenter:
         else:
             segmentation = self.text_segmentation(json_tweet['text'])
 
-        # for um in json_tweet['entities']['user_mentions']:  # list containing actual names of @name mentions in the tweet text
-        #     um = re.sub('[^a-zA-Z ]+', '', um).strip().lower()  # remove non-aplha chars
-        #     um = re.sub(' +', ' ', um)  # replace multiple spaces by single
-        #     if len(um) > 2:
-        #         segmentation.append(um)
-        #
-        # for ht in json_tweet['entities']['hashtags']:  # list containing hashtag texts of the tweet text
-        #     ht = re.sub('[0-9]+', '', ht)  # remove digits
-        #     ht = ' '.join([self.compound_word_split(i) for i in ht.split('_') if len(i) > 0])
-        #     if len(ht) > 2:
-        #         segmentation += [ht] * self.hashtag_wt
-
         return segmentation
 
 

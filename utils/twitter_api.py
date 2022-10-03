@@ -16,26 +16,27 @@ class TwitterAPI:
         return r
 
     def get_tweets(self, query, max_results=100, amount_of_requests=1):
-        # params = {'query': query + ' lang:en', 'max_results': max_results}
-        # response_dict = {'data': [], 'meta': {}}
-        #
-        # for i in range(0, amount_of_requests):
-        #     if(i > 0):
-        #         params['next_token'] = response_dict['meta']['next_token']
-        #
-        #     response = requests.get(self.__search_url, auth=self.__bearer_oauth, params=params)
-        #     if response.status_code != 200:
-        #         raise Exception(response.status_code, response.text)
-        #
-        #     json_data = json.loads(response.text)
-        #     response_dict['data'].extend(json_data['data'])
-        #     response_dict['meta'] = json_data['meta']
-        #
-        # return response_dict
+        print('Getting response from Twitter api...')
+        params = {'query': query + ' lang:en', 'max_results': max_results}
+        response_dict = {'data': [], 'meta': {}}
 
-        response = open('response.json', 'r')
-        tweets = json.load(response)
-        response.close()
+        for i in range(0, amount_of_requests):
+            if(i > 0):
+                params['next_token'] = response_dict['meta']['next_token']
 
-        return tweets
+            response = requests.get(self.__search_url, auth=self.__bearer_oauth, params=params)
+            if response.status_code != 200:
+                raise Exception(response.status_code, response.text)
+
+            json_data = json.loads(response.text)
+            response_dict['data'].extend(json_data['data'])
+            response_dict['meta'] = json_data['meta']
+
+        return response_dict
+
+        # response = open('response.json', 'r')
+        # tweets = json.load(response)
+        # response.close()
+
+        # return tweets
 

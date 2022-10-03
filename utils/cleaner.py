@@ -29,7 +29,7 @@ from nltk.tokenize import word_tokenize
 
 
 class TweetCleaner:
-    def __init__(self, remove_stop_words=True, remove_retweets=False):
+    def __init__(self, remove_stop_words=False, remove_retweets=False):
         """
         clean unnecessary twitter data
         """
