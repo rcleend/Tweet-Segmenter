@@ -1,0 +1,15 @@
+{
+  "name": "Tweet Information Gatherer",
+  "version": "0.1",
+  "manifest_version": 3,
+  "icons": {
+    "128": "assets/img/icon.png"
+  },
+  "background": {
+    "service_worker": "assets/js/background.js"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "main.html"
+  }
+}
