@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+  </head>
+  <body class="m-3">
+    <form>
+      <input id="search-field" class="input is-small is-rounded" type="text" placeholder="Search on Twitter">
+      <button id="submit-button" class="button is-small is-rounded is-primary">Search</button>
+    </form>
+    <span id="dislaimer" class="subtitle is-size-7 is-block my-2">Please keep in mind that information gathered from Twitter may be misleading.</span>
+    <div id="results-container">
+      <div id="no-results" class="is-flex is-flex-direction-column m-auto">
+        <img class="mt-6" src="assets/img/no-results.svg" alt="Man holding a phone with a social media like pop up">
+        <span class="subtitle is-size-7">No Results Found</span>
+      </div>
+      <div id="results" class="is-flex is-flex-wrap-wrap m-auto"></div>
+    </div>
+    <script src="assets/js/popup.js"></script>
+  </body>
+</html>
